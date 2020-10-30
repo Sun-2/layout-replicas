@@ -63,13 +63,16 @@ export const Layout: FC<LayoutProps> = (props) => {
 
   return (
     <>
-      <Dialog {...rest} open={showOpenSourceDialog}>
+      <Dialog {...rest} open={showOpenSourceDialog} onClose={closeSourceDialog}>
         <DialogTitle>Private source</DialogTitle>
         <DialogContent>
           <DialogContentText>
             The source of this layout is unavailable, probably because you must
-            be logged in on the <a target="_blank" href={props.sourceUrl}>target site</a> to see
-            it, or due to similar reasons.
+            be logged in on the{" "}
+            <a target="_blank" href={props.sourceUrl}>
+              target site
+            </a>{" "}
+            to see it, or due to similar reasons.
           </DialogContentText>
           <DialogContentText>
             You will see a screenshot of the source layout instead.
