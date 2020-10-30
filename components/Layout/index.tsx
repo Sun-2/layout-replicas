@@ -151,39 +151,35 @@ export const Layout: FC<LayoutProps> = (props) => {
 
           <Grid container>
             <ImgGrid item xs={12} md={6}>
-              <Box
-                component="a"
-                /* @ts-ignore */
-                href={props.myScreenshotUrl}
-              >
-                <Tooltip title="Replica" placement="top">
-                  <a href={props.myShowcaseUrl} target="_blank">
-                    <img
-                      height={"100%"}
-                      width={"100%"}
-                      src={props.myScreenshotUrl}
-                    />
-                  </a>
-                </Tooltip>
-              </Box>
+              <Tooltip title="Replica" placement="top">
+                <Box
+                  component="a"
+                  /* @ts-ignore */
+                  onClick={props.myShowcaseUrl}
+                >
+                  <img
+                    height={"100%"}
+                    width={"100%"}
+                    src={props.myScreenshotUrl}
+                  />
+                </Box>
+              </Tooltip>
             </ImgGrid>
 
             <ImgGrid item xs={12} md={6}>
-              <Box
-                component="a"
-                /* @ts-ignore */
-                href={props.sourceUrl}
-              >
-                <Tooltip title="source" placement="top">
-                  <a onClick={onSourceClick} target={"_blank"}>
-                    <img
-                      height={"100%"}
-                      width={"100%"}
-                      src={props.sourceScreenshotUrl}
-                    />
-                  </a>
-                </Tooltip>
-              </Box>
+              <Tooltip title="source" placement="top">
+                <Box
+                  component="a"
+                  /* @ts-ignore */
+                  onClick={onSourceClick}
+                >
+                  <img
+                    height={"100%"}
+                    width={"100%"}
+                    src={props.sourceScreenshotUrl}
+                  />
+                </Box>
+              </Tooltip>
             </ImgGrid>
           </Grid>
         </RootBox>
