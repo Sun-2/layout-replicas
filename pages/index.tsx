@@ -9,13 +9,21 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import { Layout } from "../components/Layout";
+import { Layout, LayoutProps } from "../components/Layout";
 import styled from "styled-components";
+import { rootResolve } from "../utils/rootResolve";
+import path from "path";
+import { promises as fsp } from "fs";
 
-export default function Home() {
+export type HomeProps = {
+  layouts: LayoutProps[];
+};
+
+export default function Home(props: HomeProps) {
+  console.log(props);
   return (
     <Box maxWidth="1200px" margin="0 auto">
-      <Box component={Paper} p={3} m={3} pb={1.5}>
+      <Box component={Paper} p={1} m={1} pb={1.5} pt={3}>
         <Typography variant="h4" align="center">
           Layout replicas
         </Typography>
@@ -61,37 +69,43 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box mt={4} ml={4}>
-        <SGrid container spacing={4} alignItems="flex-start">
-          <Layout
-            layoutName="Server managment panel"
-            sourceName="Digital Ocean"
-            sourceUrl="https://digitalocean.com"
-            myShowcaseUrl="/layouts/do"
-            sourceIconUrl="https://digitalocean.com/favicon.ico"
-            myCodeUrl="#"
-            myScreenshotUrl="https://i.imgur.com/OSpvROP.png"
-            sourceScreenshotUrl="https://i.imgur.com/AxbLIwe.png"
-          />
-          <Layout
-            layoutName="Homepage"
-            sourceName="Facebook"
-            sourceUrl="https://facebook.com"
-            sourceIconUrl="https://i.imgur.com/u5L5Y5F.png"
-            myShowcaseUrl="/layouts/do"
-            sourceScreenshotUrl="https://i.imgur.com/AxbLIwe.png"
-            myScreenshotUrl="https://i.imgur.com/OSpvROP.png"
-            myCodeUrl="#"
-          />
-        </SGrid>
+      <Box p={1}>
+        <Grid container spacing={3} alignItems="flex-start">
+          {props.layouts.map((layoutProps) => (
+            <Layout {...layoutProps} />
+          ))}
+
+        </Grid>
       </Box>
     </Box>
   );
 }
 
-const SGrid = styled(Grid)`
-  && {
-    align-items: stretch;
-    width: 100%;
-  }
-`;
+export async function getStaticProps(): Promise<{ props: HomeProps }> {
+  const layoutsDir = rootResolve("public", "layouts");
+  const layoutNames = await fsp.readdir(layoutsDir);
+
+  const metas = (
+    await Promise.all(
+      layoutNames.map((name) =>
+        fsp.readFile(path.resolve(layoutsDir, name, "meta.json"), {
+          encoding: "utf8",
+        })
+      )
+    )
+  ).map((metaString) => JSON.parse(metaString));
+
+  const fullMetas = metas.map((meta, i) => {
+    return {
+      ...meta,
+      myCodeUrl: `/layouts/${layoutNames[i]}/index.html`,
+      myShowcaseUrl: `https://github.com/Sun-2/layout-replicas/blob/master/public/layouts/${layoutNames[i]}/index.html`,
+    };
+  });
+
+  return {
+    props: {
+      layouts: fullMetas,
+    },
+  };
+}

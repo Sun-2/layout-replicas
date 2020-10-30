@@ -77,12 +77,11 @@ export const Layout: FC<LayoutProps> = (props) => {
           justifyContent="space-between"
           p={2}
           width={"50%"}
-          minWidth={"338px"}
           mx="auto"
         >
-          <ButtonGroup variant="text" fullWidth>
+          <LinksButtonGroup variant="text" fullWidth>
             <LinkButton href={props.myShowcaseUrl} size="small">
-              Showcase
+              View Live
             </LinkButton>
             <LinkButton href={props.myCodeUrl} size="small">
               My Code
@@ -90,7 +89,7 @@ export const Layout: FC<LayoutProps> = (props) => {
             <LinkButton href={props.sourceUrl} size="small">
               Source
             </LinkButton>
-          </ButtonGroup>
+          </LinksButtonGroup>
         </Box>
 
         <Grid container>
@@ -134,9 +133,26 @@ export const Layout: FC<LayoutProps> = (props) => {
   );
 };
 
+const LinksButtonGroup = styled(ButtonGroup)`
+  flex-direction: column;
+  ${media.sm} {
+    flex-direction: row;
+  }
+`;
+
 const LinkButton = styled(Button)`
-  && {
+  &&& {
     font-weight: normal;
+
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+    ${media.sm} {
+      border-right: 1px solid rgba(0, 0, 0, 0.23);
+      border-bottom: none;
+      &:last-child {
+        border-right: none;
+      }
+    }
   }
 `;
 
