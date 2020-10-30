@@ -157,13 +157,13 @@ export const Layout: FC<LayoutProps> = (props) => {
                 href={props.myScreenshotUrl}
               >
                 <Tooltip title="Replica" placement="top">
-                  <a onClick={onSourceClick} target={"_blank"}>
+                  <a href={props.myShowcaseUrl} target="_blank">
                     <img
                       height={"100%"}
                       width={"100%"}
                       src={props.myScreenshotUrl}
                     />
-                  </a>
+                  </a>{" "}
                 </Tooltip>
               </Box>
             </ImgGrid>
@@ -175,11 +175,13 @@ export const Layout: FC<LayoutProps> = (props) => {
                 href={props.sourceUrl}
               >
                 <Tooltip title="source" placement="top">
-                  <img
-                    height={"100%"}
-                    width={"100%"}
-                    src={props.sourceScreenshotUrl}
-                  />
+                  <a onClick={onSourceClick} target={"_blank"}>
+                    <img
+                      height={"100%"}
+                      width={"100%"}
+                      src={props.sourceScreenshotUrl}
+                    />
+                  </a>
                 </Tooltip>
               </Box>
             </ImgGrid>
