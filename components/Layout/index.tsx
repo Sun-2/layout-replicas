@@ -163,7 +163,7 @@ export const Layout: FC<LayoutProps> = (props) => {
                       width={"100%"}
                       src={props.myScreenshotUrl}
                     />
-                  </a>{" "}
+                  </a>
                 </Tooltip>
               </Box>
             </ImgGrid>
