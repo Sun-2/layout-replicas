@@ -98,8 +98,8 @@ export async function getStaticProps(): Promise<{ props: HomeProps }> {
   const fullMetas = metas.map((meta, i) => {
     return {
       ...meta,
-      myCodeUrl: `/layouts/${layoutNames[i]}/index.html`,
-      myShowcaseUrl: `https://github.com/Sun-2/layout-replicas/blob/master/public/layouts/${layoutNames[i]}/index.html`,
+      myShowcaseUrl: `/layouts/${layoutNames[i]}/index.html`,
+      myCodeUrl: `https://github.com/Sun-2/layout-replicas/blob/master/public/layouts/${layoutNames[i]}/index.html`,
     };
   });
 
