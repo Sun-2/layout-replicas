@@ -75,7 +75,7 @@ export const Layout: FC<LayoutProps> = (props) => {
             to see it, or due to similar reasons.
           </DialogContentText>
           <DialogContentText>
-            You will see a screenshot of the source layout instead.
+            We suggest you see a screenshot of the source layout instead.
           </DialogContentText>
           <DialogActions>
             <Button onClick={closeSourceDialog}>Cancel</Button>
