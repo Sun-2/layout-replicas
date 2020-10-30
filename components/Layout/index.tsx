@@ -71,6 +71,9 @@ export const Layout: FC<LayoutProps> = (props) => {
             be logged in on the <a target="_blank" href={props.sourceUrl}>target site</a> to see
             it, or due to similar reasons.
           </DialogContentText>
+          <DialogContentText>
+            You will see a screenshot of the source layout instead.
+          </DialogContentText>
           <DialogActions>
             <Button onClick={closeSourceDialog}>Cancel</Button>
             <Button href={props.sourceScreenshotUrl}>View screenshot</Button>
