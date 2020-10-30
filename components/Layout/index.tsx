@@ -155,7 +155,7 @@ export const Layout: FC<LayoutProps> = (props) => {
                 <Box
                   component="a"
                   /* @ts-ignore */
-                  onClick={props.myShowcaseUrl}
+                  href={props.myShowcaseUrl}
                 >
                   <img
                     height={"100%"}
